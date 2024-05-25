@@ -2,7 +2,7 @@
   "name": "namsthe-react-recap",
   "version": "1.0.0",
   "description": "",
-  "main": "script.js",
+
   "scripts": {
     "test": "jest"
   },
@@ -22,5 +22,8 @@
   },
   "devDependencies": {
     "process": "^0.11.10"
-  }
+  },
+  "browserslist":[
+    "last 2 versions"
+  ]
 }
