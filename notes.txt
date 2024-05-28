@@ -1,0 +1,67 @@
+import React from "react"
+import ReactDOM from "react-dom/client"
+
+// created the react component using create element
+
+// const Parent=React.createElement("div",{class:"parent"},[React.createElement("div",{id:"child1"},
+// [React.createElement("h1",{},"I AM FROM H1 NESTED"),
+// React.createElement("h2",{},"I AM FROM H2 NESTED")]),React.createElement("div",{id:"child2"},
+// [React.createElement("h1",{},"I AM FROM H1 NESTED"),
+// React.createElement("h2",{},"I AM FROM H2 NESTED")])])
+
+// create the react element using jsx
+
+// const Header=React.createElement("div",{class:"title"},[React.createElement("h1",{},"H1 tag"),React.createElement("h2",{},"h2 tag"),
+
+// React.createElement("h3",{},"h3 tag")])
+
+
+//  Jsx=()=>(
+// <div>
+//     <h1 className="head">Component composistion</h1>
+//     <h2>With out return </h2>
+   
+// </div>
+// )
+// const jsxelement=<div>
+//     <p>jsx element </p>
+//     <Jsx/>
+
+// </div>
+// created in create elelment menthode
+//functional component
+
+//  const header=()=>{
+//     return(
+//         <div>
+//             {Jsx}
+//             {Jsx()}
+//             <h1>This is functional component</h1>
+//             <Jsx/>
+//         </div>
+//     )
+//  }
+
+// same to create in jsx
+// const Head=()=>{
+//     return(<div className="head">
+//         <h1>h1 component</h1>
+//         <h2>h2 component</h2>
+//         <h3>h3 component</h3>
+//     </div>)
+
+// }
+ 
+Header=()=>(<div className="head">
+    
+
+    
+   <h3>LOGO</h3>
+   <input type="text" placeholder="search bar" className="search"/>
+   <img src="https://th.bing.com/th/id/R.6b0022312d41080436c52da571d5c697?rik=Ql6UUNosrWAY0w&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fpng-user-icon-icons-logos-emojis-users-2400.png&ehk=8agkVrs8bo9zafVF9Qk4%2bFqv5IwaEZrb8DwX%2ftfJtNc%3d&risl=&pid=ImgRaw&r=0" alt="" className="user" />
+   
+
+</div>)
+
+const root=ReactDOM.createRoot(document.getElementById("root"))
+root.render(<Header/>)
