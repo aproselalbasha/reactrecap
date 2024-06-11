@@ -1,6 +1,6 @@
 import { CDN_URL } from "../utlis/constant"
 const Restrocard=(resitems)=>{
-    const {name,cuisines,costForTwo,avgRating,locality,cloudinaryImageId}=resitems.resitems
+    const {name,cuisines,costForTwo,avgRating,locality,cloudinaryImageId}=resitems.resitems.info
     
     return (
     <div className="restro-card">
@@ -12,7 +12,7 @@ const Restrocard=(resitems)=>{
           <p className="cuisines">{cuisines.join(",")}</p>
           <p>{avgRating} ⭐⭐⭐</p>
           <p>{costForTwo}</p>
-          <p>{locality}</p>
+        
  
        </div>
       

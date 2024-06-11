@@ -1,5 +1,5 @@
 const reslist=[ 
-    {
+   {
     "id": "16073",
     "name": "California Burrito",
     "cloudinaryImageId": "27238ee4292d42c7b705f2ce8671ff80",
