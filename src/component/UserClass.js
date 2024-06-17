@@ -1,4 +1,5 @@
 import React from "react";
+import { json } from "react-router-dom";
 export class User extends React.Component
 {
     constructor(props){
@@ -12,9 +13,24 @@ export class User extends React.Component
    
 
     }
-    componentDidMount(){
+    async componentDidMount(){
+    // this. timer= setInterval(() => {
+    //       console.log("timer")
+            
+    //     }, 1000);
+      const data= await fetch("https://jsonplaceholder.typicode.com/posts")
+      var jsondata= await data.json()
+    
+      
+    
         console.log(this.props.name+"child didmount")
+      
     }
+    componentWillUnmount(){
+// clearInterval(this.timer)
+
+    }
+      
     
     render(){
         console.log(this.props.name+"child render")

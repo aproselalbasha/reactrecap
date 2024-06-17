@@ -19,7 +19,7 @@ class About extends React.Component{
             <h1>This is about page</h1>
             <div className="class-compo">
             <User name={"First"} location={"Chennai"}/>
-            <User2 name={"Sec"} location={"Chennai"}/>
+            {/* <User2 name={"Sec"} location={"Chennai"}/> */}
 
             </div>
            

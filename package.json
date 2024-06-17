@@ -23,7 +23,9 @@
     "reactdom": "^2.0.0"
   },
   "devDependencies": {
-    "process": "^0.11.10"
+    "postcss": "^8.4.38",
+    "process": "^0.11.10",
+    "tailwindcss": "^3.4.4"
   },
   "browserslist": [
     "last 2 versions"
