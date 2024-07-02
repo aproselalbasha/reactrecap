@@ -1,15 +1,20 @@
-import Restrocard from "./Restrocard"
+import Restrocard, {Promoted}from "./Restrocard"
 import reslist from "../utlis/mockdata"
-import {useEffect, useState} from "react"
+import {useContext, useEffect, useState} from "react"
 import { Link } from "react-router-dom"
 import useonline from "../utlis/useonline"
 import usefetchapi from "../utlis/usefetchapi"
+import Context from "../utlis/Context"
 
 const Body=()=>{
+  const{setlogin,username}=useContext(Context)
+  
+ 
 const onlinestatus=useonline()
 const [search,setsearch]=useState("")
 const [resrant,newresrant,setnewresrant]=usefetchapi()
- 
+const Ispromoted=Promoted(Restrocard)
+
  function Empty(props){
     return(<>
     {console.log(props)}
@@ -28,6 +33,7 @@ const [resrant,newresrant,setnewresrant]=usefetchapi()
  if(resrant.length===0){
   return(<img src="https://cdn.dribbble.com/users/2973561/screenshots/5757826/loading__.gif" alt="" />)
  }
+
 
 
 return  (<div className="body">
@@ -51,26 +57,35 @@ return  (<div className="body">
   </div>
     <div className="filter   mt-3 my-3 bg-cyan-700  " >
       <button id="filter_btn" onClick={()=>{
-       var filterlist=resrant.filter((res)=>{ return res.info.avgRating>4})
-     
+       var filterlist=resrant.filter((res)=>{ return res.info.avgRating>4.5})
        setnewresrant(filterlist)
+     
+       
        
       }
       }>TOP RESTRO </button>
       
       </div>
+      <div>
+        <label className="ml-2">USER NAME:</label>
+        <input type="text" className="border  border-black m-3"value={username} onChange={(e)=>{setlogin(e.target.value)
+          
+        }}/>
+      </div>
 
   </div>
-  
+
       
       
     <div className="resto-menu flex flex-wrap   justify-evenly ">
     
      {  newresrant.length===0?(<Empty items={search} />):
      newresrant.map((restrant)=>{
-    
+    console.log(restrant.info)
        return (
-        <Link  key={restrant.info.id} to={"/restromenu/"+restrant.info.id} className="link-body"><Restrocard resitems={restrant}  /> </Link>
+      <Link  key={restrant.info.id} to={"/restromenu/"+restrant.info.id} className="link-body">
+         { restrant.info.isOpen?<Ispromoted resitems={restrant} />:
+        <Restrocard resitems={restrant}  /> }</Link>
     )
  
      })} 

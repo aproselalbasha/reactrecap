@@ -1,5 +1,8 @@
+import { useContext } from "react"
 import { CDN_URL } from "../utlis/constant"
+import Context from "../utlis/Context"
 const Restrocard=(resitems)=>{
+   const{username}=useContext(Context)
     const {name,cuisines,costForTwo,avgRating,locality,cloudinaryImageId}=resitems.resitems.info
     
     return (
@@ -12,6 +15,7 @@ const Restrocard=(resitems)=>{
           <p className="cuisines">{cuisines.join(",")}</p>
           <p>{avgRating} ⭐⭐⭐</p>
           <p>{costForTwo}</p>
+          <p>{username}</p>
         
  
        </div>
@@ -19,4 +23,14 @@ const Restrocard=(resitems)=>{
  
     </div>
  )}
+ export const Promoted=(Restrocard)=>{
+return (props)=>{
+   return (
+      <div>
+         <label className=" absolute text-slate-100 bg-gray-950" >OPEN</label>
+         <Restrocard {...props}/>
+      </div>
+   )
+}
+ }
  export default Restrocard

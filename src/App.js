@@ -1,4 +1,4 @@
-import react ,{Suspense, lazy} from "react"
+import react ,{Suspense, lazy, useContext, useEffect, useState} from "react"
 import ReactDOM from "react-dom/client"
 import Header from "./component/Header"
 import Body from "./component/Body"
@@ -8,18 +8,37 @@ import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom"
 import Contact from "./component/Contact"
 import Error from "./component/Error"
 import Restromenu from "./component/Restromenu"
+import Context from "./utlis/Context"
+import { Provider } from "react-redux"
+import appstore from "./utlis/appstore"
+import Cart from "./component/Cart"
+
 // import Glossary from "./component/Glossary"
 
 const Glossary=lazy(()=>import("./component/Glossary"))
 const About=lazy(()=>import("./component/About"))
-
+  
 const Applayout=()=>{
- 
-   return(
+
+ const[login,setlogin]=useState()
+ useEffect(()=>{
+   const loginname="APROSE LALBASHA";
+   setlogin(loginname)
+
+ },[])
+
+ return(
+   
       <div>
+      <Provider store={appstore}>
+      <Context.Provider value={{username:login,setlogin}}>
+        
    <Header/>
    <Outlet/>
    <Footer/>
+   </Context.Provider>
+   </Provider>
+  
    </div>
 
 )
@@ -39,7 +58,7 @@ const approuter=createBrowserRouter([
       },
       {
          path:"restromenu/:resid",
-         element:<Restromenu/>
+         element:<Restromenu />
 
       },
       {
@@ -48,6 +67,11 @@ const approuter=createBrowserRouter([
          
          
 
+
+      },
+      {
+         path:"Cart",
+         element:<Cart/>
 
       },
       {

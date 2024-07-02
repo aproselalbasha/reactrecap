@@ -2,9 +2,18 @@
 import { useParams } from "react-router-dom";
 import { LOADING_URL, MENU_URL } from "../utlis/constant";
 import userestromenu from "../utlis/userestromenu";
-
+import Menuitemheader from "./Menuitem-Header";
+import { useState } from "react";
+const dummy="dummy";
 
 Restromenu=()=>{
+    
+    const[showindex,setshowindex]=useState(null)
+    handleindex=(index)=>{
+        showindex===index?setshowindex(null):setshowindex(index)
+
+    }
+    
     const{resid}=useParams()
     const resmenudata=userestromenu(resid)
     
@@ -12,26 +21,31 @@ Restromenu=()=>{
  if(resmenudata===null){
         return(<img src={LOADING_URL} alt="" />)
     }
-    console.log(resmenudata?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards[1].card.card.itemCards[0].card.info.name)
-    //  console.log(resmenudata?.data)
-    // console.log(resmenudata?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards[1].card?.card.itemCards[1].card.info.description)
+    // console.log(resmenudata?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards[1].card.card.itemCards[0].card.info.name)
+     
+  console.log(resmenudata?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards)
    var{itemCards}=resmenudata?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card
-  console.log(itemCards[0].card.info)
-    
-   
-    console.log(resmenudata.data.cards[2].card.card.info.cloudinaryImageId)
+
+const catraory = resmenudata?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards.filter((c) => 
+    c?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory" ||
+    c?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+);
+
+console.log(catraory[1].card.card.title)
 
  return(
-        <div className="menu-head  ml-[40%] mt-8   ">
-            <img  src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"+resmenudata.data.cards[2].card.card.info.cloudinaryImageId} alt="" className="menu-img  w-[290px]  rounded-2xl" />
-            <h1 className=" ml-12 text-2xl mt-8" >{resmenudata.data.cards[2].card.card.info.name}</h1>
-            <h3 className="ml-12  mt-8">---Menu items--</h3>
-            <ul className="menu-list">
-              {itemCards.map((e)=>{  return (
-                <li  key={e.card.info.id}  className="li-menu mt-7"> <img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"+e.card.info.imageId} alt="" className="menu-img w-[150px] mb-7" /> {e.card.info.name}  RS={e.card.info.price/100} <hr /> </li>
-                    )})}
-                
-            </ul>
+        <div className="menu-head  mt-8  mx-[10%]    ">
+           
+            <h1 className=" text-2xl mt-8  text-center " >{resmenudata.data.cards[2].card.card.info.name}</h1>
+            <h3 className="mt-8 text-center">---Menu items--</h3>
+            {catraory.map((e,index)=><Menuitemheader  props={e?.card?.card} 
+            status={index===showindex?true:false}
+            showindex={()=>handleindex(index)}
+           dummy={dummy}
+            
+            />)}
+            
+          
         </div>
     )
 }
