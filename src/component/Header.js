@@ -7,12 +7,12 @@ import Context from "../utlis/Context"
 import { useSelector } from "react-redux"
 const Header=()=>{
   const cartitems= useSelector((store)=>store.cart.items)
-  console.log(cartitems)
+
  const {username}=useContext(Context)
    const onlinestatus=useonline()
    const[login_button,setlogin_button]=useState("LOGIN")
    useEffect(()=>{
-      console.log("use effect called header ")
+  
    },[])
     return(
     <div className="header flex justify-between  bg-slate-800    text-stone-200"> 
@@ -26,7 +26,7 @@ const Header=()=>{
              <li className="li li mr-10"><Link to={"/about"} className="link">ABOUT </Link> </li>
              <li className="li li mr-10"><Link to={"/contact"} className="link">CONTACT </Link> </li>
              <li className="li li mr-10"><Link to={"/glossary"} className="link">GLOSSERY</Link></li>
-             <li className="li li mr-10"><Link to={"/Cart"} className="link">KART ({cartitems.length}: items)</Link></li>
+             <li  className="li li mr-10"><Link to={"/Cart"} className="link">KART({cartitems.length}:items)</Link></li>
              
             
              

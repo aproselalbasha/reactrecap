@@ -16,6 +16,9 @@ const Contact=()=>{
     return(
         <>
         <h1>This is contat page </h1>
+        <input type="text" placeholder="NAME" />
+        <input type="text" placeholder="Message"/>
+        <button type="submit">SUBMIT</button>
         </>
     )
 }

@@ -11,7 +11,7 @@ useEffect(()=>{
 const resmenu=async ()=>{
         
     const fetchdata=await fetch(MENU_URL+resid)
-      menudata=await fetchdata.json()
+    const menudata=await fetchdata.json()
       console.log(menudata)
       
      setresmenudata(menudata)

@@ -4,9 +4,9 @@ import {additems} from "../utlis/cartslice"
 
 const  Menubody=({items,dummy})=>{
     // console.log(items[0].card.info.name)
-    console.log(items.map((e)=>e.card.info)) 
+    // console.log(items.map((e)=>e.card.info)) 
     //props drilling
-    console.log(dummy)
+    // console.log(dummy)
     const addbutton=useDispatch()
     addhandler=(e)=>{
         addbutton(additems(e))
@@ -16,7 +16,8 @@ const  Menubody=({items,dummy})=>{
     return(
         <div>
           {items.map((e)=>(
-            <div key={e.card.info.id} className="mt-[90px] mr-[10px]">
+            <div data-testid="fooditem"
+             key={e.card.info.id} className="mt-[90px] mr-[10px]">
 
                 <div className="flex  border">
              

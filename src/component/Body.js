@@ -17,11 +17,11 @@ const Ispromoted=Promoted(Restrocard)
 
  function Empty(props){
     return(<>
-    {console.log(props)}
+    
     <h2>{props.items}:Not found in result</h2>
     </>)
    }
-   console.log(useState)
+  
    if(onlinestatus===false){
     return(<div>
       <img src="https://cdn.dribbble.com/users/251873/screenshots/9288094/media/a1c2f89065f68e1b2b5dcb66bdb9beb1.gif" alt="" />
@@ -39,11 +39,11 @@ const Ispromoted=Promoted(Restrocard)
 return  (<div className="body">
   <div className="body-mid flex justify-start  ml-3">
   <div className="search  mt-3 my-3 ">
-    <input type="text" className="search-box border  border-solid   border-black w-[700px]  " value={search} onChange={(e)=>{
+    <input type="text" data-testid="searchbar" className="search-box border  border-solid   border-black w-[700px]  " value={search} onChange={(e)=>{
      setsearch(e.target.value)
 
     }} />
-    <button className=" mx-5       rounded-sm  bg-cyan-700" onClick={()=>{
+    <button data-testid="search" className=" mx-5       rounded-sm  bg-cyan-700"  onClick={()=>{
       const filterrestro=resrant.filter((e)=>{ return e.info.name.toLowerCase().includes(search.toLowerCase())})
      
      
@@ -56,7 +56,7 @@ return  (<div className="body">
     
   </div>
     <div className="filter   mt-3 my-3 bg-cyan-700  " >
-      <button id="filter_btn" onClick={()=>{
+      <button   id="filter_btn" data-testid="top" onClick={()=>{
        var filterlist=resrant.filter((res)=>{ return res.info.avgRating>4.5})
        setnewresrant(filterlist)
      
@@ -81,10 +81,11 @@ return  (<div className="body">
     
      {  newresrant.length===0?(<Empty items={search} />):
      newresrant.map((restrant)=>{
-    console.log(restrant.info)
+      
        return (
       <Link  key={restrant.info.id} to={"/restromenu/"+restrant.info.id} className="link-body">
-         { restrant.info.isOpen?<Ispromoted resitems={restrant} />:
+         { restrant.info.isOpen?
+         <Ispromoted resitems={restrant} />:
         <Restrocard resitems={restrant}  /> }</Link>
     )
  
